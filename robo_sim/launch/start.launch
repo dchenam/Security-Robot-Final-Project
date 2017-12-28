@@ -11,7 +11,7 @@
    </include>
 
   <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" 
-    name="teleop_twist_keyboard" output="screen" launch-prefix="gnome-terminal --command">
+    name="teleop_twist_keyboard" output="screen" launch-prefix="xterm -e">
 	  <remap from="/cmd_vel" to="/r1/cmd_vel"/> 
   </node>
 
