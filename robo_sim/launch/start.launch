@@ -10,7 +10,10 @@
      <arg name="robot_position" value="-x 0.0 -y -0.5 -z 0.01 -R 0 -P 0 -Y +1.57" />
    </include>
 
-  
+  <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" 
+    name="teleop_twist_keyboard" output="screen" launch-prefix="gnome-terminal --command">
+	  <remap from="/cmd_vel" to="/r1/cmd_vel"/> 
+  </node>
 
   <node pkg="tf" type="static_transform_publisher" name="base_to_odom_r1"
      args="0.0 -0.0 0.0 0.0 0.0 0.0 base_link r1/odom 200" />
