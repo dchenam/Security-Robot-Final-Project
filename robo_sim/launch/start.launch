@@ -1,8 +1,6 @@
 <launch>
-
-
    <!-- Gazebo  -->
-  <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+  <include file="$(find gazebo_ros)/launch/shapes_world.launch" />
 
   <!-- Robot with diff drive -->
   <include file="$(find multi_robot_scenario)/launch/pioneer3dx.gazebo.launch">
@@ -16,7 +14,15 @@
   </node>
 
   <node pkg="tf" type="static_transform_publisher" name="base_to_odom_r1"
-     args="0.0 -0.0 0.0 0.0 0.0 0.0 base_link r1/odom 200" />
+    args="0.0 -0.0 0.0 0.0 0.0 0.0 base_link r1/odom 200" />
+
+  
+	<!-- <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" 
+    args="0.16 0 0.1 0 0 0 base_link r1/front_laser 100"/> -->
+  
+
+  <!-- Hokuyo -->
+  <!-- <include file="$(find hokuyo_node)/hokuyo_test.launch" /> -->
 
   <!-- RVIZ -->
   <node pkg="rviz" type="rviz" name="rviz" args="-d $(find multi_robot_scenario)launch/pioneer3dx.rviz" />
