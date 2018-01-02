@@ -1,6 +1,7 @@
 <launch>
    <!-- Gazebo  -->
-  <include file="$(find gazebo_ros)/launch/shapes_world.launch" />
+  <include file="$(find multi_robot_scenario)/world/room.launch">
+  </include>
 
   <!-- Robot with diff drive -->
   <include file="$(find multi_robot_scenario)/launch/pioneer3dx.gazebo.launch">
