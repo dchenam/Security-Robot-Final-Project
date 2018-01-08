@@ -3,6 +3,7 @@ import roslib; roslib.load_manifest('teleop_twist_keyboard')
 import rospy
 
 from geometry_msgs.msg import Twist
+from std_msgs.msg import Bool
 
 import sys, select, termios, tty
 
@@ -77,6 +78,7 @@ if __name__=="__main__":
     	settings = termios.tcgetattr(sys.stdin)
 	
 	pub = rospy.Publisher('/cmd_vel', Twist, queue_size = 1)
+	followpub = rospy.Publisher('/follow', Bool, queue_size = 1)
 	rospy.init_node('teleop_twist_keyboard')
 
 	speed = rospy.get_param("~speed", 0.5)
@@ -112,6 +114,9 @@ if __name__=="__main__":
 				th = 0
 				if (key == '\x03'):
 					break
+			if (key == 'f'):
+				followpub.publish(True)
+				print("True sent to /follow")
 
 			twist = Twist()
 			twist.linear.x = x*speed; twist.linear.y = y*speed; twist.linear.z = z*speed;
