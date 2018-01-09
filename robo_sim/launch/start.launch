@@ -14,8 +14,8 @@
 	  <remap from="/cmd_vel" to="/r1/cmd_vel"/> 
   </node>
 
-  <!---node pkg="tf" type="static_transform_publisher" name="base_to_odom_r1"
-    args="0.0 -0.0 0.0 0.0 0.0 0.0 base_link r1/odom 1" />-->
+  <!--node pkg="tf" type="static_transform_publisher" name="base_to_odom_r1"
+    args="0.0 0.0 0.0 0.0 0.0 0.0 r1/odom r1/base_link 1000" /> -->
    
   <!-- Hokuyo -->
   <!-- <include file="$(find hokuyo_node)/hokuyo_test.launch" /> -->
