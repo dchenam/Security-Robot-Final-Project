@@ -26,7 +26,7 @@ class RecognitionNode(object):
             self.cmd_pub.publish(voice_stop)
             self.stop_pub.publish(stop_msg)
             self.launch.shutdown()
-            p=os.popen('/usr/bin/zbarcam','r')
+            p=os.popen('zbarcam','r')
             code = p.readline()
             pub = rospy.Publisher('/barcode', String, queue_size = 1)
             pub.publish(code)
