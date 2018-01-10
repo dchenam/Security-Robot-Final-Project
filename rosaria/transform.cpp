@@ -18,7 +18,7 @@ void poseCallback(const nav_msgs::Odometry::ConstPtr& odomsg)
         tf::Vector3(odomsg->pose.pose.position.x/1000.0, 
                     odomsg->pose.pose.position.y/1000.0, 
                     odomsg->pose.pose.position.z/1000.0)),
-				odomsg->header.stamp, "/odom", "/base_footprint"));
+				odomsg->header.stamp, "/odom", "/base_link"));
       ROS_DEBUG("odometry frame sent");
       ROS_INFO("odometry frame sent");
 }
@@ -35,19 +35,14 @@ int main(int argc, char** argv){
 	tf::TransformBroadcaster broadcaster;
   
   //subscribe to pose info
-	ros::Subscriber pose_sub = n.subscribe<nav_msgs::Odometry>("RosAria/pose", 1, poseCallback);
+	//ros::Subscriber pose_sub = n.subscribe<nav_msgs::Odometry>("RosAria/pose", 1, poseCallback);
 
 	while(n.ok()){
     //base_link => laser
 		broadcaster.sendTransform(
 			tf::StampedTransform(
-				tf::Transform(tf::Quaternion(0, 0, 0, 0), tf::Vector3(0.034, 0.0, 0.250/*0.13, -0.04, 0.294*/)),
+				tf::Transform(tf::createIdentityQuaternion(), tf::Vector3(0.034, 0.0, 0.250/*0.13, -0.04, 0.294*/)),
 				ros::Time::now(), "/base_link", "/laser"));
-                broadcaster.sendTransform(
-			tf::StampedTransform(
-				tf::Transform(tf::createIdentityQuaternion(), tf::Vector3(0.0, 0.0, 0.0)),
-				ros::Time::now(), "/base_footprint","/base_link"));
-
     ros::spinOnce();		
     r.sleep();
 	}

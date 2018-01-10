@@ -12,6 +12,10 @@ double xGoal1 = 3.68838095665;
 double yGoal1 = 2.62702989578;
 double xGoal2 = -4.33983612061;
 double yGoal2 = 2.31118774414;
+double xlab1 = -0.636958122253;
+double ylab1 = -0.51575088501;
+double xlab2 = 1.31425595284;	
+double ylab2 = -0.823260307312;
 
 bool goalReached = false;
 
@@ -24,9 +28,9 @@ int main(int argc, char** argv){
   while(true){
       i = i % 2;
       if( i==0 ){
-        goalReached = moveToGoal(xGoal1,yGoal1);
+        goalReached = moveToGoal(xlab1,ylab1);
       }else{
-        goalReached = moveToGoal(xGoal2,yGoal2);
+        goalReached = moveToGoal(xlab2,ylab2);
       }
       if(goalReached){
         ROS_INFO("Goal Reach!");
