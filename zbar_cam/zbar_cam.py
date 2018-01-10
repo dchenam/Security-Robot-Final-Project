@@ -2,7 +2,7 @@
 import os
 import rospy
 
-p=os.popen('/usr/bin/zbarcam','r')
+p=os.popen('zbarcam','r')
 
 if __name__=="__main__":
     rospy.init_node('zbar_cam')

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import rospy
+import os
 from darknet_ros_msgs.msg import BoundingBoxes
 from std_msgs.msg import Int8, String
 from actionlib_msgs.msg import GoalID
@@ -25,6 +26,12 @@ class RecognitionNode(object):
             self.cmd_pub.publish(voice_stop)
             self.stop_pub.publish(stop_msg)
             self.launch.shutdown()
+            p=os.popen('/usr/bin/zbarcam','r')
+            code = p.readline()
+            pub = rospy.Publisher('/barcode', String, queue_size = 1)
+            pub.publish(code)
+            print 'Got barcode:', code
+
 if __name__ == "__main__":
     recognition_node = RecognitionNode()
     rospy.spin()

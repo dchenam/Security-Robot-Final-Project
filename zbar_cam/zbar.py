@@ -7,7 +7,7 @@ import cv2
 import numpy as np
 from std_msgs.msg import String
 
-p=os.popen('/usr/bin/zbarcam','r')
+p=os.popen('zbarcam','r')
 
 if __name__=="__main__":
     rospy.init_node('zbar_cam')
