@@ -1,6 +1,6 @@
-obstacle_range: 2.5
-raytrace_range: 3.0
-inflation_radius: 0.70
+obstacle_range: 1.0
+raytrace_range: 2.0
+inflation_radius: 0.50
 
 #---standard pioneer footprint---
 
@@ -18,7 +18,7 @@ footprint: [ [0.254, -0.0508], [0.1778, -0.0508], [0.1778, -0.1778], [-0.1905, -
 #---(in meters)---
 # footprint: [ [0.3302, -0.0508], [0.254, -0.0508], [0.254, -0.254], [-0.254, -0.254], [-0.254, 0.254], [0.254, 0.254], [0.254, 0.0508], [0.3302, 0.0508] ]
 
-transform_tolerance: 0.2
+transform_tolerance: 0.3
 map_type: costmap
 
 observation_sources: laser_scan_sensor

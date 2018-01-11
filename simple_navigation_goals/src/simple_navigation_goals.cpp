@@ -6,16 +6,26 @@ typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseCl
 
 /** function declarations **/
 bool moveToGoal(double xGoal, double yGoal);
+        //toilet
+        // x: 12.3343067169
+        // y: -12.283946991
+
+    //corridor
+        //     x: 3.10740280151
+        // y: -8.33006095886
+
+    //dark little corner
+        //     x: -0.140046596527
+        // y: -13.3347625732
+
 
 /** declare the coordinates of interest **/
-double xGoal1 = 3.68838095665;
-double yGoal1 = 2.62702989578;
-double xGoal2 = -4.33983612061;
-double yGoal2 = 2.31118774414;
-double xlab1 = -0.636958122253;
-double ylab1 = -0.51575088501;
-double xlab2 = 1.31425595284;	
-double ylab2 = -0.823260307312;
+double xToilet =  12.3343067169;
+double yToilet = -12.283946991;
+double xCorridor = 3.2757563591;
+double yCorridor = -8.45731639862;
+double xDark = -0.140046596527;
+double yDark = -13.3347625732;
 
 bool goalReached = false;
 
@@ -24,13 +34,15 @@ int main(int argc, char** argv){
   ros::NodeHandle n;
   ros::spinOnce();
 
-  int i = 1;
+  int i = 0;
   while(true){
-      i = i % 2;
+      i = i % 3;
       if( i==0 ){
-        goalReached = moveToGoal(xlab1,ylab1);
+        goalReached = moveToGoal(xToilet,yToilet);
+      }else if(i==1){
+        goalReached = moveToGoal(xCorridor,yCorridor);
       }else{
-        goalReached = moveToGoal(xlab2,ylab2);
+        goalReached = moveToGoal(xDark,yDark);
       }
       if(goalReached){
         ROS_INFO("Goal Reach!");
