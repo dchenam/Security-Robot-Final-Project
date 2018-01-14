@@ -29,6 +29,7 @@ class DialogflowNode(object):
         self.ai = apiai.ApiAI(self._client_access_token)
 
         self.result_pub = rospy.Publisher("command", String, queue_size=10)
+        self.resume_pub = rospy.Publisher("resume", String, queue_size=10)
         self.request = None
 
     def speech_callback(self, msg):
@@ -41,6 +42,12 @@ class DialogflowNode(object):
         result_msg = String()
         json_response = json.load(response)
         result_msg.data = json_response["result"]["fulfillment"]["speech"]
+        intent = json_response["result"]["metadata"]["intentName"]
+        if intent == "override":
+            resume_msg = String()
+            resume_msg.data = "resume"
+            self.resume_pub.publish(resume_msg)
+            print("returning to patrol")
         self.result_pub.publish(result_msg)
 
 if __name__ == "__main__":
